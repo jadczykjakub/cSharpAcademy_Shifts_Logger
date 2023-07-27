@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cSharpAcademy_Shifts_Logger", "cSharpAcademy_Shifts_Logger.csproj", "{CCF72C4A-8589-447C-96CE-83D8104549ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CCF72C4A-8589-447C-96CE-83D8104549ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCF72C4A-8589-447C-96CE-83D8104549ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCF72C4A-8589-447C-96CE-83D8104549ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCF72C4A-8589-447C-96CE-83D8104549ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17542CC0-05DF-4D71-B52E-56882C90092C}
+	EndGlobalSection
+EndGlobal
