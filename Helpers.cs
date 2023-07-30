@@ -1,8 +1,8 @@
 ﻿using cSharpAcademy_Shifts_Logger.Models;
 
-namespace cSharpAcademy_Shifts_Logger.Services
+namespace cSharpAcademy_Shifts_Logger
 {
-    public static class ShiftService
+    public static class Helpers
     {
         public static Shift GetValidShiftObject(Shift shift)
         {

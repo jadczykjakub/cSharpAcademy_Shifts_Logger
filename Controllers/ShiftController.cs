@@ -1,6 +1,5 @@
-﻿using cSharpAcademy_Shifts_Logger.Data;
+﻿using cSharpAcademy_Shifts_Logger.Interfaces;
 using cSharpAcademy_Shifts_Logger.Models;
-using cSharpAcademy_Shifts_Logger.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace cSharpAcademy_Shifts_Logger.Controllers
@@ -9,28 +8,24 @@ namespace cSharpAcademy_Shifts_Logger.Controllers
     [ApiController]
     public class ShiftController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly IShiftRepository _shiftRepository;
 
-        public ShiftController(DataContext context)
+        public ShiftController(IShiftRepository shiftRepository)
         {
-            _context = context;
+            _shiftRepository = shiftRepository;
         }
 
         [HttpPost]
         public ActionResult<Shift> AddShift(Shift shift)
         {
-            if (shift == null)
-            {
-                return BadRequest("Invalid data provided");
-            }
+            var calculatedShift = Helpers.GetValidShiftObject(shift);
 
-            if (!_context.Workers.Any(w => w.WorkerId == shift.WorkerId))
-            {
-                return NotFound();
-            }
+            var addShift = _shiftRepository.AddShift(calculatedShift);
 
-            _context.Shifts.Add(ShiftService.GetValidShiftObject(shift));
-            _context.SaveChanges();
+            if (!addShift)
+            {
+                return BadRequest("Invalid data provider");
+            }
 
             return Ok(shift);
         }

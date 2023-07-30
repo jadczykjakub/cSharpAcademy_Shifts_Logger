@@ -1,4 +1,4 @@
-﻿using cSharpAcademy_Shifts_Logger.Data;
+﻿using cSharpAcademy_Shifts_Logger.Interfaces;
 using cSharpAcademy_Shifts_Logger.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,17 +9,18 @@ namespace cSharpAcademy_Shifts_Logger.Controllers
 
     public class WorkerController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly IWorkerRepository _workerRepository;
 
-        public WorkerController(DataContext context)
+
+        public WorkerController(IWorkerRepository workerRepository)
         {
-            _context = context;
+            _workerRepository = workerRepository;
         }
 
         [HttpGet("{id}")]
         public ActionResult<Worker> GetWorker(int id)
         {
-            var worker = _context.Workers.FirstOrDefault(w => w.WorkerId == id);
+            var worker = _workerRepository.GetWorker(id);
 
             if (worker == null)
             {
@@ -33,13 +34,12 @@ namespace cSharpAcademy_Shifts_Logger.Controllers
         [HttpPost]
         public ActionResult<Worker> AddWorker(Worker worker)
         {
-            if (worker == null)
+            var addWorker = _workerRepository.AddWorker(worker);
+
+            if (!addWorker)
             {
                 return BadRequest("Invalid data provided");
             }
-
-            _context.Workers.Add(worker);
-            _context.SaveChanges();
 
             return Ok(worker);
         }
